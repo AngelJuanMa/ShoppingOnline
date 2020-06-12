@@ -1,25 +1,50 @@
+$iconsColor: #62d7f6
+$iconsColorHover: #368296
+
 @media screen and (min-width: 550px)
     input[type=text]
-        width: 40% !important
-
+        width: 35% !important
 
 @media screen and (max-width: 1025px)
-
     .menu
         display: block !important
 
     .visible
         display: none
+    #logIn
+        margin-top: 16px !important
+
+@media screen and (max-width: 1200px)
+    #logIn
+        margin-top: 16px !important
 
 @media screen and (min-width: 1200px)
-    input[type=text]
-        width: 20% !important
+    #header
+        height: 60px !important
+
+        input[type=text]
+            width: 18% !important
+            margin-left: 40.7% !important
+            margin-top: 17px !important
+
+        .icons
+            margin-top: 19px !important
+
+        .iconlogIn
+            margin-right: 20px !important
 
 #header
     overflow: hidden
     height: 50px
-    background: #1c355a
+    background: #100f35
 
+    #logIn
+        color: white
+        float: right
+        margin-top: 20px
+    #logIn:hover
+        color: #acacac
+        
     img
         width: 50px
         height: 100%
@@ -27,35 +52,41 @@
         float: left
 
     input[type=text]
-        width: 60%
+        width: 40%
         height: 20px
         margin-top: 13px
-        border: none
+        border: 1px solid #62d7f6
+        padding-left: 8px
         border-radius: 9px
         margin-right: auto
         margin-left: auto
         display: flex
+        transition: 0.8s
 
+    input[type=text]:hover,
     input[type=text]:focus
-        border: 2px solid dodgerblue
+        border: 3px solid #62d7f6
 
     .icons
         cursor: pointer
         margin-left: 1%
         width: 45px
         height: 21px
-        color: #abaeb1
+        color: $iconsColor
         float: right
         margin-top: 14px
         transition: 0.4s
 
     .icons:hover
-        color: #828588
+        color: $iconsColorHover
 
     .menu
         display: none
         margin-left: 0 !important
         margin-right: 0.5%
+
+    .iconlogIn
+        margin-left: 0 !important
 
 #menu
 
@@ -66,11 +97,12 @@
     #move
         position: absolute
         margin-top: 50px
-        background: #1c355a
-        height: 0 !important
+        background: #100f35
         transition: 1s
+        animation: menu-deslisable 0.4s linear
         border-radius: 1px 0px 30px 30px
         width: 50px
+        height: 200px
 
     .iconMenu
         cursor: pointer
@@ -78,16 +110,17 @@
         margin-left: 4px
         width: 45px
         height: 21px
-        color: #abaeb1
+        color: $iconsColor
         transition: 0.4s
+        animation: icons 1s linear
+        opacity: 1
 
     .iconMenu:hover
-        color: #828588
+        color: $iconsColorHover
 
 @media (prefers-reduced-motion: no-preference)
     #logo
         animation: App-logo-spin infinite 20s linear
-
 
 @keyframes App-logo-spin
     from
@@ -95,3 +128,17 @@
 
     to
         transform: rotate(360deg)
+
+@keyframes menu-deslisable
+    from
+        height: 0
+
+    to
+        height: 200px
+
+@keyframes icons
+    from
+        opacity: 0
+
+    to
+        opacity: 1
