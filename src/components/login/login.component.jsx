@@ -1,22 +1,49 @@
-import React, {Component} from 'react'
-import './login.style.sass';
+import React, { Component } from "react";
+import { NavLink, Redirect } from "react-router-dom";
+import Header from "../header/header.component.jsx";
+import "./login.style.sass";
 
 class Login extends Component {
-    render(){
+  state = {
+    redirect: false
+  }
 
-        return(
-            <div id="loginComponent">
-                <h1>¡Hola! Ingresá tu e‑mail o usuario</h1>
+  email = React.createRef();
+  password = React.createRef();
 
-                <input type="email" placeholder="E-mail o usuario"/>
+  signIn = (e) => {
+    e.preventDefault();
+    let user = {
+      email: this.email.current.value,
+      password: this.password.current.value
+    } 
+    localStorage.setItem('identity', JSON.stringify(user))
+    this.setState({ redirect: true })
+  }
 
-                <input type="password" placeholder="Contraseña" name="password"/>
+  render() {
+    if (localStorage.getItem('identity')) this.setState({ redirect: true });
+    if (this.state.redirect) return <Redirect to='/' />
 
-                <input type="submit" name="submit"/>
-                <p id="createAccount">Crear cuenta</p>
-            </div>
-        )
-    }
+    return (
+      <React.Fragment>
+        <Header></Header>
+        <div id="loginComponent">
+          <h1>¡Hola! Ingresá tu e‑mail o usuario</h1>
+          <form onSubmit={this.signIn}>
+            <input type="email" ref={this.email} placeholder="E-mail o usuario" />
+
+            <input type="password" ref={this.password} placeholder="Contraseña" name="password" />
+
+            <input type="submit" name="submit" />
+          </form>
+          <NavLink to="registro" id="createAccount">
+            Crear cuenta
+          </NavLink>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
-export default Login
+export default Login;
