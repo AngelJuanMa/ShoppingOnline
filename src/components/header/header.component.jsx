@@ -26,13 +26,16 @@ class Header extends Component {
 
   signOut = () => {
     localStorage.removeItem("identity");
-    this.setState({ identity: false });
+    this.setState({
+      menu: false,
+      identity: false
+    });
   };
 
   clicked = (e) => {
     var value = this.state.menu === false ? true : false;
     this.setState({
-      menu: value,
+      menu: value
     });
   };
 
@@ -51,7 +54,7 @@ class Header extends Component {
         {this.state.menu && (
           <div id="menu">
             <div id="move">
-              <FontAwesomeIcon className="iconMenu" icon={faSignOutAlt} />
+              <FontAwesomeIcon className="iconMenu" onClick={this.signOut} icon={faSignOutAlt} />
               <FontAwesomeIcon className="iconMenu" icon={faShoppingCart} />
               <FontAwesomeIcon className="iconMenu" icon={faShoppingBasket} />
               <FontAwesomeIcon className="iconMenu" icon={faComments} />
@@ -95,16 +98,16 @@ class Header extends Component {
                   />
                 </React.Fragment>
               ) : (
-                <React.Fragment>
-                  <NavLink to="login">
-                    <FontAwesomeIcon
-                      className="icons iconlogIn"
-                      icon={faSignInAlt}
-                    />
-                    <p id="logIn"> Ingresá </p>
-                  </NavLink>
-                </React.Fragment>
-              )}
+                  <React.Fragment>
+                    <NavLink to="login">
+                      <FontAwesomeIcon
+                        className="icons iconlogIn"
+                        icon={faSignInAlt}
+                      />
+                      <p id="logIn"> Ingresá </p>
+                    </NavLink>
+                  </React.Fragment>
+                )}
 
               <input type="text" placeholder="Buscar productos" name="" id="" />
             </React.Fragment>

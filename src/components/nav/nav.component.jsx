@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import './nav.component.sass';
+import { NavLink } from "react-router-dom";
 
 class Nav extends Component {
     constructor(props) {
         super(props);
-    
+
         this.state = {
             sliderBool: false
         };
-      }
+    }
 
     showSlider = (e) => {
         var value = this.state.sliderBool === false ? true : false;
@@ -19,6 +20,7 @@ class Nav extends Component {
     }
 
     render() {
+        var identity = localStorage.getItem('identity');
         return (
             <React.Fragment>
                 <nav>
@@ -33,7 +35,12 @@ class Nav extends Component {
                         <span>Vender</span>
                         <span>Ayuda</span>
                     </div>
-                    <span id="account">Mi cuenta</span>
+                    {identity &&
+                        <NavLink to="user">
+                            <span id="account">Mi cuenta</span>
+                        </NavLink>
+                    }
+
                 </nav>
                 {this.state.sliderBool &&
                     (
